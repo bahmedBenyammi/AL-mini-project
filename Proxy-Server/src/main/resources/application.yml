@@ -1,0 +1,18 @@
+
+
+#spring.cloud.gateway.discovery.locator.enabled=true
+#eureka.client.serviceUrl.defaultZone=http://localhost:8001/eureka/
+#spring.application.name=proxy
+#spring.cloud.gateway.discovery.locator.lower-case-service-id=true
+#keucloak setting
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+
