@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 public class AuthenticationController {
@@ -35,18 +36,19 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public ResponseEntity<?> generateToken(AuthReq authReq) throws Exception {
+        System.out.println("email "+authReq.getEmail()+" password "+authReq.getPassword());
+        authReq.setEmail(authReq.getEmail().toLowerCase(Locale.ROOT));
         try {
             authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(authReq.getUsername(), authReq.getPassword())
+                    new UsernamePasswordAuthenticationToken(authReq.getEmail(), authReq.getPassword())
             );
 
         } catch (BadCredentialsException e) {
-            System.out.println("Incorrect username or password" + authReq.getPassword() + " " + authReq.getUsername());
             throw new Exception("Incorrect username or password", e);
         }
 
         final UserDetails userDetails = userDetailsService
-                .loadUserByUsername(authReq.getUsername());
+                .loadUserByUsername(authReq.getEmail());
 
         final String jwt = jwtUtil.generateToken(userDetails.getUsername());
         return ResponseEntity.ok(new AuthResp(jwt));
@@ -55,6 +57,8 @@ public class AuthenticationController {
 
     @PostMapping("/registration/CreateUser")
     public String validtoken(Account account) {
+
+        System.out.println("creat account email:" +account.getEmail() +"password "+account.getPassword());
         return registrationService.CreateUser(account);
     }
     @DeleteMapping("/deleteAccount/{email}")

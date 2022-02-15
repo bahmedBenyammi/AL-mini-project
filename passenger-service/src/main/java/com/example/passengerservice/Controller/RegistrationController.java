@@ -15,9 +15,12 @@ public class RegistrationController {
 
 
     @PostMapping("/CreateUser")
-    public String createUser(Passenger passenger,String Password){
+    public String createUser(Passenger passenger,String password){
+        System.out.println("passeord "+password);
+        System.out.println(passenger.toString());
         Account account=new Account();
-        account.setPassword(Password);
+        account.setPassword(password);
+        System.out.println(passenger.getBirthday().toString());
         account.setEmail(passenger.getEmail());
         return accountService.registrat(passenger,account);
     }

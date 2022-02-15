@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.script.ScriptTemplateConfig;
 
-@RestController("/user")
+@RestController
 public class AcounnetConroller {
     @Autowired
     UpdateAccountService updateAccountService;
-    @PostMapping("/changeEmail")
+    @PostMapping("/user/changeEmail")
     public String changeEmail(String oldEmail,String newEmail){
        return updateAccountService.ChangeEmail(oldEmail,newEmail);
     }
-    @PostMapping("/changePassword")
+    @PostMapping("/user/changePassword")
     public String changeEmail(String email,String oldPassword,String newPassword){
         return updateAccountService.changePassword(email,oldPassword,newPassword);
     }

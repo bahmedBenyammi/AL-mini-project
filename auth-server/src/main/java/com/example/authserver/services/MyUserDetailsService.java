@@ -3,7 +3,6 @@ package com.example.authserver.services;
 import com.example.authserver.Models.Account;
 import com.example.authserver.Repos.AccountRespository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

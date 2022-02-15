@@ -34,6 +34,7 @@ public class AccountService {
           passengerResposirtory.save(passenger);
 
       }
+        System.out.println("reponse :"+reponse);
        return reponse;
     }
     public Passenger AccountInformation(String email){
